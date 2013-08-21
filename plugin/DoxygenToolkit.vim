@@ -345,14 +345,14 @@ if !exists("g:DoxygenToolkit_startCommentTag ")
   let g:DoxygenToolkit_startCommentBlock = "/* "
 endif
 if !exists("g:DoxygenToolkit_interCommentTag ")
-  let g:DoxygenToolkit_interCommentTag = "* "
+  let g:DoxygenToolkit_interCommentTag = " * "
 endif
 if !exists("g:DoxygenToolkit_interCommentBlock ")
   let g:DoxygenToolkit_interCommentBlock = "* "
 endif
 if !exists("g:DoxygenToolkit_endCommentTag ")
-  let g:DoxygenToolkit_endCommentTag = "*/"
-  let g:DoxygenToolkit_endCommentBlock = "*/"
+  let g:DoxygenToolkit_endCommentTag = " */"
+  let g:DoxygenToolkit_endCommentBlock = " */"
 endif
 if exists("g:DoxygenToolkit_commentType")
   if ( g:DoxygenToolkit_commentType == "C++" )
@@ -1098,6 +1098,8 @@ function! s:InitializeParameters()
   " Compatibility with c/c++ IDE plugin
   let s:timeoutlenBackup = &timeoutlen
   let &timeoutlen = 0
+  let s:save_paste = &paste
+  set paste
 endfunction
 
 
@@ -1110,6 +1112,7 @@ function! s:RestoreParameters()
   let &cinoptions = s:cinoptionsBackup
   " Compatibility with c/c++ IDE plugin
   let &timeoutlen = s:timeoutlenBackup
+  let &paste = s:save_paste
 endfunction
 
 
